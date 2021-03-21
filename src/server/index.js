@@ -20,7 +20,9 @@ app.use(bodyParser.json());
 
 app.use(express.static('dist'));
 
-router.get('/', (req, res) => {
+router.post('/travel', (req, res) => {
+  const { location, dateOfTravel } = req.body;
+
   res.send('Ok');
 });
 

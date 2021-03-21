@@ -20,6 +20,8 @@ The project will include a simple form where you enter the location you are trav
 
 This may not sound like a lot, but there is a fair amount of moving pieces that rely on each other to work. You’ll need to plan out the logic of what you are trying to accomplish before you begin developing. There are a lot of paths you can take, and what you choose to display and how you display it is somewhat flexible. It is highly recommended that after you meet the minimum requirements in the rubric, you continue debugging the UX and improve the project.
 
+![Project Requirement Sample Mockup](assets/travel-app-project-mockup.png)
+
 ## Getting Started
 
 1. Clone app here
@@ -30,13 +32,17 @@ git clone https://github.com/visualtechnet/travel-plano.git
 2. Create a GeoNames account [http://www.geonames.org/](https://www.weatherbit.io/) and add your username in step #4
 3. Sign up to WeatherBit API [https://www.weatherbit.io/](https://www.weatherbit.io/) and add your api in step #4
 4. Sign up for Pixabay Account [https://pixabay.com/](https://pixabay.com/) and add your api key in step #4
-4. Create an environment file, .env
+5. Create an environment file, .env
 ```
 PORT=
 GEONAMES_USERNAME=
 WEATHERBIT_APIKEY=
 PIXABAY_APIKEY=
 ```
+
+## Additional References
+
+1. [Rest Countries EU](https://restcountries.eu/#api-endpoints-all) to pull in data for the country being visited.
 
 
 ## Hosting
