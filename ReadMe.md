@@ -22,4 +22,23 @@ This may not sound like a lot, but there is a fair amount of moving pieces that 
 
 ## Getting Started
 
+1. Clone app here
+
+```
+git clone https://github.com/visualtechnet/travel-plano.git
+```
+2. Create a GeoNames account [http://www.geonames.org/](https://www.weatherbit.io/) and add your username in step #4
+3. Sign up to WeatherBit API [https://www.weatherbit.io/](https://www.weatherbit.io/) and add your api in step #4
+4. Create an environment file, .env
+```
+PORT=
+GEONAMES_USERNAME=
+WEATHERBIT_APIKEY=
+```
+
+
 ## Hosting
+
+You can find the site here:
+
+[https://xenodochial-goodall-7badb2.netlify.app/](https://xenodochial-goodall-7badb2.netlify.app/)
