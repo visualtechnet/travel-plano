@@ -21,6 +21,8 @@ router.get('/', (req, res) => {
   res.send('Ok');
 });
 
+app.use(router);
+
 app.listen(port, () => {
   console.log('Welcome to Travel Plano');
   console.log('A Travel Application to pull multiple types of data from different sources. A Udacity project presented by Mark Guerrero');
