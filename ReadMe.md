@@ -29,11 +29,13 @@ git clone https://github.com/visualtechnet/travel-plano.git
 ```
 2. Create a GeoNames account [http://www.geonames.org/](https://www.weatherbit.io/) and add your username in step #4
 3. Sign up to WeatherBit API [https://www.weatherbit.io/](https://www.weatherbit.io/) and add your api in step #4
+4. Sign up for Pixabay Account [https://pixabay.com/](https://pixabay.com/) and add your api key in step #4
 4. Create an environment file, .env
 ```
 PORT=
 GEONAMES_USERNAME=
 WEATHERBIT_APIKEY=
+PIXABAY_APIKEY=
 ```
 
 

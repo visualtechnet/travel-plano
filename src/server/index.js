@@ -8,6 +8,7 @@ const helmet = require('helmet');
 const port = process.env.PORT || 8090;
 const geonames_username = process.env.GEONAMES_USERNAME;
 const weatherbit_apikey = process.env.WEATHERBIT_APIKEY;
+const pixabay_apikey = process.env.PIXABAY_APIKEY;
 
 const app = express();
 const router = express.Router();
