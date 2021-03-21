@@ -2,30 +2,63 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test</title>
-    <!-- CSS only -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test</title>
+  <!-- CSS only -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@500;700;800&display=swap');
+  </style>
+  <script src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 </head>
 
 <body>
-    <div class="container-fluid">
-        <!-- Header -->
-        <header>
-            <h1>Travel Plano</h1>
-        </header>
-        <!-- Main Section -->
-        <main>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas a molestiae vel asperiores, praesentium
-                eligendi natus, magni veritatis, maiores minus recusandae iusto blanditiis doloremque eveniet
-                repellendus tempora itaque beatae similique!</p>
-        </main>
-        <!-- Footer -->
-        <footer>&copy;2021 Travel Plano. A Udacity Project by Mark Guerrero</section>
-    </div>
+  <!-- Header -->
+  <header>
+    <div class="logo"><span class="logo-first">Travel</span><span class="logo-second">Plano</span></div>
+  </header>
+  <!-- Main Section -->
+  <main>
+    <section class="container">
+      <section class="planning card">
+        <div class="card-header bg-primary">
+          <h2 class="text-white">Plan your trip</h2>
+        </div>
+        <div class="card-body">
+          <form name="tripPlan" class="needs-validation" novalidate>
+            <div class="row g-3">
+              <div class="col-md-3 mb-3">
+                <label for="tripName" class="form-label">Trip Name </label>
+                <input name="tripName" type="text" class="form-control" placeholder="Give your trip a name" />
+                <div class="invalid-feedback">Trip Name required</div>
+              </div>
+              <div class="col-md-5 mb-3">
+                <label for="location" class="form-label">Destination </label>
+                <input name="location" type="text" class="form-control" placeholder="City or PostalCode" />
+                <div class="invalid-feedback">Destination is required</div>
+              </div>
+              <div class="col-md-2 mb-3">
+                <label for="travelDate" class="form-label">Travel Date </label>
+                <input name="travelDate" type="text" class="form-control" value="" />
+                <div class="invalid-feedback">Travel Date is required</div>
+              </div>
+              <div class="col-md-2 d-flex justify-content-start align-items-center">
+                <button class="btn btn-primary mt-2" type="submit">Save Trip</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </section>
+    </section>
+  </main>
+  <!-- Footer -->
+  <footer>&copy;2021 Travel Plano. A Udacity Project by Mark Guerrero</section>
 </body>
 
-</html>l
+</html>
