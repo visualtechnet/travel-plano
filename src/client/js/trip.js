@@ -57,7 +57,7 @@ const loadTrips = () => {
 
   controls.travelList.html('');
 
-  allTrips.forEach((trip, index) => {
+  allTrips.forEach((trip) => {
     const {
       name, destination, forecast, pix, startDate,
     } = trip;
