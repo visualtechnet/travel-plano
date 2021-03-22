@@ -21,4 +21,28 @@ const isValidDate = (entryDate) => {
   console.log(entryDate);
 };
 
-export { initValidation, initDatePicker, isValidDate };
+const extractDestination = (destination) => {
+  try {
+    if (destination.indexOf(',') !== -1) {
+      const addr = destination.split(',');
+      const city = addr[0];
+      const state = addr[1].trim().split(' ')[0];
+      const postalcode = addr[1].match(/\d+/)[0];
+      return {
+        city,
+        state,
+        postalcode,
+      };
+    }
+
+    const postalcode = destination.match(/\d+/)[0];
+
+    return postalcode && { postalcode };
+  } catch (error) {
+    throw new Error('Format must be City, State PostalCode or just PostalCode');
+  }
+};
+
+export {
+  initValidation, initDatePicker, isValidDate, extractDestination,
+};

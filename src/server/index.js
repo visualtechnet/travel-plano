@@ -9,6 +9,7 @@ const port = process.env.PORT || 8090;
 const geonames_username = process.env.GEONAMES_USERNAME;
 const weatherbit_apikey = process.env.WEATHERBIT_APIKEY;
 const pixabay_apikey = process.env.PIXABAY_APIKEY;
+const { dailyForecastByPostalCode, dailyForecastByLocation } = require('./weather');
 
 const app = express();
 const router = express.Router();
@@ -20,10 +21,22 @@ app.use(bodyParser.json());
 
 app.use(express.static('dist'));
 
-router.post('/travel', (req, res) => {
-  const { location, dateOfTravel } = req.body;
+router.get('/weather/postal/:postalcode', async (req, res) => {
+  const { postalcode } = req.params;
 
-  res.send('Ok');
+  const forecast = await dailyForecastByPostalCode(postalcode).catch((err) => res.status(500).send(`Unable to fulfill request: ${err.message}`));
+
+  console.log('postalcode ', forecast);
+  res.status(200).send(forecast);
+});
+
+router.get('/weather/location/:location', async (req, res) => {
+  const { location } = req.params;
+
+  const forecast = await dailyForecastByLocation(location).catch((err) => res.status(500).send(`Unable to fulfill request: ${err.message}`));
+
+  console.log('location ', forecast);
+  res.status(200).send(forecast);
 });
 
 app.use(router);

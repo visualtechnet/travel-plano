@@ -3,17 +3,20 @@
 		"browser": true,
 		"commonjs": true,
 		"node": true,
-		"jquery": true
+		"jquery": true,
+		"jest": true
 	},
 	"extends": [
 		"airbnb-base"
 	],
+	"plugins": ["jest"],
 	"parserOptions": {
 		"ecmaVersion": 12
 	},
 	"rules": {
 		"semi": ["error", "always"],
 		"quotes": ["error", "single"],
-		"no-console": "off"
+		"no-console": "off",
+		"max-len": "off"
 	}
 }

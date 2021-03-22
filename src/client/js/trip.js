@@ -1,19 +1,13 @@
 import { getData, saveData } from './dataStore';
-import { MYTRIPS } from './contant';
+import { MYTRIPS, DATEFORMAT } from './contant';
+import { extractDestination } from './common';
 
 const controls = {
   formTripPlan: document.querySelector('form[name="tripPlan"]'),
-  tripName: document.querySelector('form[name="tripName"]'),
-  tripLocation: document.querySelector('form[name="location"]'),
-};
-
-const initTrip = () => {
-  controls.formTripPlan.addEventListener('submit', (event) => {
-    event.preventDefault();
-    event.stopPropagation();
-
-    return false;
-  });
+  name: document.querySelector('input[name="tripName"]'),
+  destination: document.querySelector('input[name="location"]'),
+  travelDate: $('input[name="travelDate"'),
+  travelList: document.querySelector('section.travelList'),
 };
 
 const saveTrip = (name, destination, startDate, endDate) => {
@@ -43,6 +37,27 @@ const saveTrip = (name, destination, startDate, endDate) => {
 };
 
 const getTrips = () => getData(MYTRIPS) || [];
+
+const loadTrips = () => {
+  const allTrips = getTrips();
+};
+
+const initTrip = () => {
+  controls.formTripPlan.addEventListener('submit', (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    const name = controls.name.value;
+    const destination = extractDestination(controls.destination.value);
+    const { startDate, endDate } = controls.travelDate.data('daterangepicker');
+
+    console.log(name, destination);
+    // saveTrip(name.value, destination.value, startDate.format(DATEFORMAT), endDate.format(DATEFORMAT));
+
+    return false;
+  });
+
+  loadTrips();
+};
 
 export {
   saveTrip, getTrips, initTrip, controls,

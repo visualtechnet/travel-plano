@@ -1,15 +1,12 @@
 const saveData = (key, value) => {
   if (localStorage) {
-    localStorage.setItem(key, value);
+    localStorage.setItem(key, JSON.stringify(value));
   } else {
-    localStorage.getItem(key);
+    return localStorage.getItem(key);
   }
+  return value;
 };
 
-const getData = (key) => {
-  if (localStorage) {
-    localStorage.getItem(key);
-  }
-};
+const getData = (key) => localStorage && JSON.parse(localStorage.getItem(key));
 
 export { saveData, getData };

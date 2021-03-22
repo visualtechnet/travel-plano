@@ -6,5 +6,23 @@
 
 main {
     padding: 10px;
-    height: 85vh;
+    min-height: 85vh;
+}
+
+.travel-itenerary {
+    margin-top: 20px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.travel-item {
+    width: 20vw;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.travel-item:last-child {
+    margin-right: 0;
 }
