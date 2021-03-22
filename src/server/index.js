@@ -6,10 +6,9 @@ const cors = require('cors');
 const helmet = require('helmet');
 
 const port = process.env.PORT || 8090;
-const geonames_username = process.env.GEONAMES_USERNAME;
-const weatherbit_apikey = process.env.WEATHERBIT_APIKEY;
-const pixabay_apikey = process.env.PIXABAY_APIKEY;
-const { dailyForecastByPostalCode, dailyForecastByLocation } = require('./weather');
+const { dailyForecastByLatLng } = require('./weather');
+const { getPicByQuery } = require('./pixlocation');
+const { searchByPostalCode } = require('./geolocation');
 
 const app = express();
 const router = express.Router();
@@ -21,22 +20,28 @@ app.use(bodyParser.json());
 
 app.use(express.static('dist'));
 
-router.get('/weather/postal/:postalcode', async (req, res) => {
-  const { postalcode } = req.params;
+router.get('/weather/postal/:lat/:lng', async (req, res) => {
+  const { lat, lng } = req.params;
 
-  const forecast = await dailyForecastByPostalCode(postalcode).catch((err) => res.status(500).send(`Unable to fulfill request: ${err.message}`));
+  const forecast = await dailyForecastByLatLng(lat, lng).catch((err) => res.status(500).send(`Unable to fulfill request: ${err.message}`));
 
-  console.log('postalcode ', forecast);
   res.status(200).send(forecast);
 });
 
-router.get('/weather/location/:location', async (req, res) => {
-  const { location } = req.params;
+router.get('/pixlocation/:query', async (req, res) => {
+  const { query } = req.params;
 
-  const forecast = await dailyForecastByLocation(location).catch((err) => res.status(500).send(`Unable to fulfill request: ${err.message}`));
+  const pictures = await getPicByQuery(query).catch((err) => res.status(500).send(`Unable to get pictures: ${err.message}`));
 
-  console.log('location ', forecast);
-  res.status(200).send(forecast);
+  res.status(200).send(pictures);
+});
+
+router.get('/geolocation', async (req, res) => {
+  const { postalcode } = req.query;
+
+  const geoLoc = await searchByPostalCode(postalcode).catch((err) => res.status(500).send(`Unable to get pictures: ${err.message}`));
+
+  res.status(200).send(geoLoc);
 });
 
 app.use(router);

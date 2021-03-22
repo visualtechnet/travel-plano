@@ -14,15 +14,24 @@ main {
     display: flex;
     flex-flow: row wrap;
     justify-content: flex-start;
-    align-items: flex-start;
+    align-items: stretch;
 }
 
 .travel-item {
-    width: 20vw;
+    width: 40vw;
+    margin-right: .9em;
+    margin-bottom: 15px;
+}
+
+.travel-item img {
+    max-width: 200px;
     margin-right: 10px;
-    margin-bottom: 10px;
 }
 
 .travel-item:last-child {
     margin-right: 0;
+}
+
+.travel-item .card-header {
+    font-family: 'Fira Sans';
 }

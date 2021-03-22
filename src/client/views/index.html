@@ -10,12 +10,16 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/@ttskch/select2-bootstrap4-theme@x.x.x/dist/select2-bootstrap4.min.css">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@500;700;800&display=swap');
   </style>
   <script src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 </head>
 
 <body>
@@ -40,7 +44,8 @@
               </div>
               <div class="col-md-5 mb-3">
                 <label for="location" class="form-label">Destination </label>
-                <input name="location" type="text" class="form-control" placeholder="City, State or PostalCode" />
+                <select name="location" type="text" class="form-control"
+                  placeholder="City, State or PostalCode"></select>
                 <div class="invalid-feedback">Destination is required</div>
               </div>
               <div class="col-md-2 mb-3">
@@ -57,71 +62,7 @@
       </section>
       <!-- Iterate through list of Trips -->
       <section name="travelList" class="travel-itenerary">
-        <div class="card travel-item">
-          <div class="card-header"> My Trip to Blah </div>
-          <div class="card-body"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, modi autem. Nemo
-            adipisci eveniet quisquam blanditiis, dolore consectetur unde voluptates, nam provident quasi sunt molestiae
-            debitis consequatur velit optio laborum. </div>
-          <div class="card-footer"> Footer Here </div>
-        </div>
-        <div class="card travel-item">
-          <div class="card-header"> My Trip to Blah </div>
-          <div class="card-body"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, modi autem. Nemo
-            adipisci eveniet quisquam blanditiis, dolore consectetur unde voluptates, nam provident quasi sunt molestiae
-            debitis consequatur velit optio laborum. </div>
-          <div class="card-footer"> Footer Here </div>
-        </div>
-        <div class="card travel-item">
-          <div class="card-header"> My Trip to Blah </div>
-          <div class="card-body"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, modi autem. Nemo
-            adipisci eveniet quisquam blanditiis, dolore consectetur unde voluptates, nam provident quasi sunt molestiae
-            debitis consequatur velit optio laborum. </div>
-          <div class="card-footer"> Footer Here </div>
-        </div>
-        <div class="card travel-item">
-          <div class="card-header"> My Trip to Blah </div>
-          <div class="card-body"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, modi autem. Nemo
-            adipisci eveniet quisquam blanditiis, dolore consectetur unde voluptates, nam provident quasi sunt molestiae
-            debitis consequatur velit optio laborum. </div>
-          <div class="card-footer"> Footer Here </div>
-        </div>
-        <div class="card travel-item">
-          <div class="card-header"> My Trip to Blah </div>
-          <div class="card-body"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, modi autem. Nemo
-            adipisci eveniet quisquam blanditiis, dolore consectetur unde voluptates, nam provident quasi sunt molestiae
-            debitis consequatur velit optio laborum. </div>
-          <div class="card-footer"> Footer Here </div>
-        </div>
-        <div class="card travel-item">
-          <div class="card-header"> My Trip to Blah </div>
-          <div class="card-body"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, modi autem. Nemo
-            adipisci eveniet quisquam blanditiis, dolore consectetur unde voluptates, nam provident quasi sunt molestiae
-            debitis consequatur velit optio laborum. </div>
-          <div class="card-footer"> Footer Here </div>
-        </div>
-        <div class="card travel-item">
-          <div class="card-header"> My Trip to Blah </div>
-          <div class="card-body"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, modi autem. Nemo
-            adipisci eveniet quisquam blanditiis, dolore consectetur unde voluptates, nam provident quasi sunt molestiae
-            debitis consequatur velit optio laborum. </div>
-          <div class="card-footer"> Footer Here </div>
-        </div>
-        <div class="card travel-item">
-          <div class="card-header"> My Trip to Blah </div>
-          <div class="card-body"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, modi autem. Nemo
-            adipisci eveniet quisquam blanditiis, dolore consectetur unde voluptates, nam provident quasi sunt molestiae
-            debitis consequatur velit optio laborum. </div>
-          <div class="card-footer"> Footer Here </div>
-        </div>
-        <div class="card travel-item">
-          <div class="card-header"> My Trip to Blah </div>
-          <div class="card-body"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, modi autem. Nemo
-            adipisci eveniet quisquam blanditiis, dolore consectetur unde voluptates, nam provident quasi sunt molestiae
-            debitis consequatur velit optio laborum. </div>
-          <div class="card-footer"> Footer Here </div>
-        </div>
       </section>
-    </section>
   </main>
   <!-- Footer -->
   <footer>&copy;2021 Travel Plano. A Udacity Project by Mark Guerrero</section>
