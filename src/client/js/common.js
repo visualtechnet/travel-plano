@@ -43,7 +43,7 @@ const extractDestination = (destination) => {
   return postalcode && { postalcode };
 };
 
-const element = (tag, classList = [], attributes, listener) => {
+const element = (tag, classList = []) => {
   const el = document.createElement(tag);
 
   classList.forEach((customClass) => {
