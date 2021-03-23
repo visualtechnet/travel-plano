@@ -7,19 +7,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Travel Plano</title>
   <!-- CSS only -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-  <link rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/@ttskch/select2-bootstrap4-theme@x.x.x/dist/select2-bootstrap4.min.css">
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@500;700;800&display=swap');
-  </style>
-  <script src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@300;400;700&family=Shadows+Into+Light&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 </head>
 
 <body>
@@ -29,43 +22,45 @@
   </header>
   <!-- Main Section -->
   <main>
-    <section class="container">
-      <section class="planning card">
+    <section class="planning">
+      <div class="card">
         <div class="card-header bg-primary">
           <h2 class="text-white">Plan your trip</h2>
         </div>
-        <div class="card-body">
-          <form name="tripPlan" class="needs-validation" novalidate>
-            <div class="row g-3">
-              <div class="col-md-3 mb-3">
-                <label for="tripName" class="form-label">Trip Name </label>
-                <input name="tripName" type="text" class="form-control" placeholder="Give your trip a name" />
-                <div class="invalid-feedback">Trip Name required</div>
-              </div>
-              <div class="col-md-5 mb-3">
-                <label for="location" class="form-label">Destination </label>
-                <select name="location" type="text" class="form-control"
-                  placeholder="City, State or PostalCode"></select>
-                <div class="invalid-feedback">Destination is required</div>
-              </div>
-              <div class="col-md-2 mb-3">
-                <label for="travelDate" class="form-label">Travel Date </label>
-                <input name="travelDate" type="text" class="form-control" value="" />
-                <div class="invalid-feedback">Travel Date is required</div>
-              </div>
-              <div class="col-md-2 d-flex justify-content-start align-items-center">
-                <button class="btn btn-primary mt-2" type="submit">Save Trip</button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </section>
-      <!-- Iterate through list of Trips -->
-      <section name="travelList" class="travel-itenerary">
-      </section>
+        <form name="tripPlan" class="card-body flex d-row-nowrap justify-content-space-evenly">
+          <div class="flex d-column card-item">
+            <label for="tripName" class="form-label">Trip Name <sup>*</sup></label>
+            <input name="tripName" type="text" required class="form-control" maxlength="100"
+              placeholder="Give your trip a name" />
+          </div>
+          <div class="flex d-column card-item">
+            <label for="location" class="form-label">Destination <sup>*</sup></label>
+            <!-- <select name="location" type="text" class="form-control" placeholder="City, State or PostalCode"></select> -->
+            <input name="location" type="text" required pattern="\d+" aria-label="Enter 5 digit Postal Code" size="5"
+              maxlength="5" class="form-control" placeholder="Enter Postal Code" />
+          </div>
+          <div class="flex d-column card-item">
+            <label for="travelFromDate" class="form-label">From Date <sup>*</sup></label>
+            <input name="travelFromDate" type="date" required class="form-control" date-format="mm/dd/yyyy" value="" />
+          </div>
+          <div class="flex d-column card-item">
+            <label for="travelToDate" class="form-label">To Date <sup>*</sup></label>
+            <input name="travelToDate" type="date" required class="form-control" date-format="mm/dd/yyyy" value="" />
+          </div>
+          <div class="flex d-column card-item full-centered">
+            <button name="btn" class="btn btn-primary btn-save-trip" type="submit">Save Trip</button>
+          </div>
+        </form>
+      </div>
+    </section>
+    <!-- Iterate through list of Trips -->
+    <section class="container">
+      <section name="travelList" class="travel-itenerary"></section>
+    </section>
+    </section>
   </main>
   <!-- Footer -->
-  <footer>&copy;2021 Travel Plano. A Udacity Project by Mark Guerrero</section>
+  <footer>&copy;2021 Travel Plano. A Udacity Project by Mark Guerrero</footer>
 </body>
 
 </html>

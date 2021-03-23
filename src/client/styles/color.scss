@@ -1,1 +1,13 @@
-$logoBrown: #812F33
+$logoBrown: #812F33;
+$primary: #0468BF;
+$accent: #049DBF;
+$secondary: #8C4332;
+$ternary: #3B592D;
+$background: #D99E6A;
+
+.btn-primary {
+    background-color: $primary;
+    color: #fff;
+    font-weight: bolder;
+    text-transform: uppercase;
+}

@@ -1,25 +1,116 @@
+@import './color.scss';
+
 body {
     box-sizing: border-box;
     font-family: 'Trebuchet MS', 'Verdana', Arial, sans-serif;
     font-size: 16px;
+    width: 100vw;
 }
 
 h1 {
-    font-size: 2.4vw;
+    font-size: 2.4em;
 }
 
 h2 {
-    font-size: 2vw;
+    font-size: 2em;
 }
 
 h3 {
-    font-size: 1.8vw;
+    font-size: 1.8em;
 }
 
 h4 {
-    font-size: 1.6vw;
+    font-size: 1.6em;
 }
 
 h5 {
-    font-size: 1.4vw;
+    font-size: 1.4em;
+}
+
+.flex {
+    display: flex;
+}
+
+.d-row-wrap {
+    flex-flow: row wrap;
+}
+
+.d-row-nowrap {
+    flex-flow: row nowrap;
+}
+
+.d-column {
+    flex-flow: column nowrap;
+}
+
+.justify-content-space-evenly {
+    justify-content: space-evenly;
+}
+
+.justify-content-center {
+    justify-content: center;
+    align-content: center;
+}
+
+.full-centered {
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+}
+
+.error {
+    color: $secondary;
+    font-style: italic;
+    font-weight: bolder;
+    font-size: .8em;
+    margin: 10px 0;
+}
+
+.error.active {
+    padding: 0.3em;
+}
+
+.form-control {
+    display: block;
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.form-control:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #80bdff;
+    outline: 0;
+    //box-shadow: 0 0 0 0.2rem rgb(0 123 255 / 25%);
+}
+
+.btn {
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+
+input:focus:invalid {
+    box-shadow: none;
 }

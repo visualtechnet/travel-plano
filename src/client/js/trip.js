@@ -1,14 +1,16 @@
 /* eslint-disable camelcase */
 import moment from 'moment';
 import { getData, saveData } from './dataStore';
-import { MYTRIPS, DATEFORMAT, TRAVEL_SERVER_URL } from './contant';
+import { MYTRIPS, TRAVEL_SERVER_URL } from './contant';
+import { element } from './common';
 
 const controls = {
   formTripPlan: document.querySelector('form[name="tripPlan"]'),
   name: document.querySelector('input[name="tripName"]'),
-  destination: $('select[name="location"]'),
-  travelDate: $('input[name="travelDate"'),
-  travelList: $('section[name=travelList]'),
+  destination: document.querySelector('input[name="location"]'),
+  travelFromDate: document.querySelector('input[name="travelFromDate"]'),
+  travelToDate: document.querySelector('input[name="travelToDate"]'),
+  travelList: document.querySelector('section[name="travelList"]'),
 };
 
 const saveTrip = (name, destination, startDate, endDate, forecast, pix) => {
@@ -26,12 +28,13 @@ const saveTrip = (name, destination, startDate, endDate, forecast, pix) => {
       pix,
     }];
   } else {
+    const newTrips = trips.filter((trip) => trip.name !== name);
     const updatedTrip = {
       ...trips[currentTripIdx], name, destination, startDate, endDate, forecast, pix,
     };
 
     allTrips = [
-      ...trips.splice(currentTripIdx, 1),
+      ...newTrips,
       updatedTrip,
     ];
   }
@@ -41,10 +44,7 @@ const saveTrip = (name, destination, startDate, endDate, forecast, pix) => {
 
 const removeTrip = (name) => {
   const trips = getData(MYTRIPS) || [];
-  const currentTripIdx = trips.findIndex((trip) => trip.name === name);
-  const newTrips = [
-    ...trips.slice(currentTripIdx, 1),
-  ];
+  const newTrips = trips.filter((trip) => trip.name !== name);
 
   saveData(MYTRIPS, newTrips);
 };
@@ -52,14 +52,14 @@ const removeTrip = (name) => {
 const getTrips = () => getData(MYTRIPS) || [];
 
 const loadTrips = () => {
-  const placeholderDefault = 'https://via.placeholder.com/150';
+  const placeholderDefault = 'https://source.unsplash.com/300x250/?nature,travel,winter';
   const allTrips = getTrips();
 
-  controls.travelList.html('');
+  controls.travelList.innerHTML = '';
 
   allTrips.forEach((trip) => {
     const {
-      name, destination, forecast, pix, startDate,
+      name, destination, forecast, pix, startDate, endDate,
     } = trip;
     const { city, countryCode } = destination;
     const randomPix = Math.floor(Math.random() * pix.length);
@@ -69,37 +69,70 @@ const loadTrips = () => {
       const target = moment(startDate);
       return target.diff(current, 'days') >= -1;
     });
-    const forcastedWeather = targetWeather && targetWeather[0];
+    const forecastedWeather = targetWeather && targetWeather[0];
+    const nowMoment = moment();
+    const momentStartDate = moment(startDate);
+    const diffInDays = momentStartDate.diff(nowMoment, 'days');
+    console.log(nowMoment, momentStartDate, diffInDays);
 
-    const travelItem = $(`
-      <div class="card travel-item">
-        <div class="card-header bg-warning"><h4 class="p-2">${name}</h4></div>
-        <div class="card-body d-flex justify-content-space-between">
-          <img src="${previewURL || placeholderDefault}" title="${name}" class="mr-10" />
-          <div>
-              <h3>My Trip to: ${city}, ${countryCode}</h3><br />
-              <div>Departing: ${startDate}</div><br />
-              <p>Typical weather for then is </p><br />
-              <p>${forcastedWeather.weather.description}</p>
-          </div>
-        </div>
-        <div class="card-footer d-flex justify-content-end">
-          <button name="travelRemove" class="btn btn-secondary" travel="${name}" type="button">Remove</button>
-        </div>
-      </div>
-      `);
+    const travelContainer = element('div', ['card', 'travel-item']);
+    const travelHeader = element('div', ['card-header']);
+    const travelH4 = element('h2');
+    travelH4.innerHTML = name;
+    const travelBody = element('div', ['card-body']);
+    const pin = element('i', ['pin']);
+    travelContainer.append(pin);
+    // TravelImage
+    const travelImgContainer = element('div', ['card-img-container', 'card-body-item']);
+    travelImgContainer.setAttribute('style', `background-image: url('${previewURL}')`);
+    travelBody.append(travelImgContainer);
 
-    controls.travelList.append(travelItem);
+    // TravelInfo
+    const travelInfo = element('div', ['card-info', 'card-body-item']);
+    const infoH3 = element('h4');
+    const infoDeparting = element('p', ['info-departure']);
+    const infoDaysAway = element('p', ['info-daysaway']);
+    const bRemove = element('button', ['btn']);
+    bRemove.setAttribute('name', 'travelRemove');
+    bRemove.setAttribute('travel', name);
+    bRemove.innerHTML = 'remove trip';
+    const infoWeatherForecast = element('p', ['info-forecast']);
+    infoH3.innerHTML = `My Trip to ${city}, ${countryCode}`;
+    infoDeparting.innerHTML = `Departing from <b>${startDate}</b> to <b>${endDate}</b>`;
+    infoDaysAway.innerHTML = `${city} is ${diffInDays} days away`;
+    infoWeatherForecast.innerHTML = `Typical weather will be ${forecastedWeather.weather.description} with a temp high of ${forecastedWeather.high_temp}&deg;C and ${forecastedWeather.low_temp}&deg;C`;
+    travelInfo.append(infoH3);
+    travelInfo.append(infoDeparting);
+    travelInfo.append(bRemove);
+    travelInfo.append(infoDaysAway);
+    travelInfo.append(infoWeatherForecast);
+    travelBody.append(travelInfo);
+
+    travelHeader.append(travelH4);
+    travelContainer.append(travelHeader);
+    travelContainer.append(travelBody);
+
+    controls.travelList.append(travelContainer);
   });
 
-  const travelRemoveCtl = $('button[name*=travelRemove]');
+  const buttonsRemove = document.querySelectorAll('button[name*=travelRemove]');
 
-  travelRemoveCtl.on('click', (event) => {
-    event.preventDefault();
-    event.stopPropagation();
-    const name = $(this).attr('travel');
-    removeTrip(name);
+  buttonsRemove.forEach((el) => {
+    el.addEventListener('click', (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      const name = el.getAttribute('travel');
+      removeTrip(name);
+      loadTrips();
+    });
   });
+};
+
+const getGeoLocation = async (postalcode) => {
+  const url = `${TRAVEL_SERVER_URL}/geolocation?postalcode=${postalcode}`;
+  const result = await fetch(url).then((res) => res.json());
+
+  return result;
 };
 
 const getDailyForecast = async (lat, lng) => {
@@ -116,85 +149,48 @@ const getPhotoDestination = async (query) => {
   return result;
 };
 
-const saveTravelDestination = async (name, destination, startDate, endDate) => {
-  const { lat, lng } = destination;
+const saveTravelDestination = async (name, postalcode, startDate, endDate) => {
   let forecast = null;
 
-  await getDailyForecast(lat, lng).then(async (res) => {
-    forecast = res;
-    const { city_name } = forecast;
-    const searchLocation = `${city_name.trim().replace('-', ' ')}`;
-    await getPhotoDestination(searchLocation).then((pix) => {
-      const { hits } = pix;
-      const pixList = hits && hits.slice(0, 3);
+  await getGeoLocation(postalcode).then(async (geo) => {
+    const {
+      lat, lng, postalCode, placeName, adminCode1, countryCode,
+    } = geo && geo.postalCodes.length > 0 && geo.postalCodes[0];
 
-      saveTrip(name, destination, startDate, endDate, forecast, pixList);
-      loadTrips();
+    const destination = {
+      lat,
+      lng,
+      postalCode,
+      city: placeName,
+      state: adminCode1,
+      countryCode,
+    };
+
+    await getDailyForecast(destination.lat, destination.lng).then(async (dailyForecast) => {
+      forecast = dailyForecast;
+      const { city_name } = forecast;
+      const searchLocation = `${city_name.trim().replace('-', ' ')}`;
+      await getPhotoDestination(searchLocation).then((pix) => {
+        const { hits } = pix;
+        const pixList = hits && hits.slice(0, 3);
+
+        saveTrip(name, destination, startDate, endDate, forecast, pixList);
+        loadTrips();
+      });
     });
   });
 };
 
-const formatTrip = (trip) => {
-  const { countryCode, placeName } = trip;
-  const $container = $(
-    '<div class=\'select2-result-trip d-flex justify-content-space-between clearfix\'>'
-      + `<div class='select2-result-trip__placeName'><b>${placeName || ''}</b></div><div class='select2-result-trip__countryCode ml-10'>&nbsp;&nbsp;${countryCode || ''}</div>`
-    + '</div>',
-  );
-
-  return $container;
-};
-
-const formatTripSelection = (trip) => trip.placeName || trip.text;
-
 const initTrip = () => {
-  // initialize dropdonw
-  controls.destination.select2({
-    theme: 'bootstrap4',
-    ajax: {
-      url: `${TRAVEL_SERVER_URL}/geolocation`,
-      dataType: 'json',
-      delay: 500,
-      data: (params) => {
-        const query = {
-          postalcode: params.term,
-        };
-
-        return query;
-      },
-      processResults(data, params) {
-        const page = params.page || 1;
-
-        return {
-          results: data.postalCodes,
-          pagination: {
-            more: page * 10 < data.postalCodes.length,
-          },
-        };
-      },
-    },
-    placeholder: 'Enter Postal Code',
-    minimumInputLength: 5,
-    templateResult: formatTrip,
-    templateSelection: formatTripSelection,
-  });
-
   controls.formTripPlan.addEventListener('submit', async (event) => {
     event.preventDefault();
     event.stopPropagation();
     const name = controls.name.value;
-    const destObject = controls.destination.select2('data')[0];
-    const { startDate, endDate } = controls.travelDate.data('daterangepicker');
-    const destination = {
-      lat: destObject.lat,
-      lng: destObject.lng,
-      postalCode: destObject.postalCode,
-      city: destObject.placeName,
-      state: destObject.adminCode1,
-      countryCode: destObject.countryCode,
-    };
+    const postalcode = controls.destination.value;
+    const startDate = controls.travelFromDate.value;
+    const endDate = controls.travelToDate.value;
 
-    await saveTravelDestination(name, destination, startDate.format(DATEFORMAT), endDate.format(DATEFORMAT));
+    await saveTravelDestination(name, postalcode, startDate, endDate);
 
     return false;
   });

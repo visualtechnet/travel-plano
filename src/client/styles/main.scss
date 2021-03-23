@@ -5,33 +5,272 @@
 @import 'footer.scss';
 
 main {
-    padding: 10px;
+    padding: 0;
     min-height: 85vh;
 }
+
+.container {
+    margin: 0 auto;
+    width: 100vw;
+}
+
+.planning {
+    //background: url('../media/background-home.jpg') no-repeat center center fixed;
+    background: url('https://source.unsplash.com/weekly?travel') no-repeat center center fixed;
+    background-size: cover;
+    overflow: hidden;
+    min-height: 50vh;
+    width: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-self: center;
+    align-items: center;
+    padding: 10px 0;
+    border-top: solid 1px #fff;
+    border-bottom: solid 1px #fff;
+}
+
+.planning .card {
+    width: 80vw;
+    background-color: rgba(0,0,0,0.8);
+    padding: 1.5em;
+    color: #fff;
+    border: solid 1px #000;
+}
+
+.planning .card-header {
+    margin-bottom: 20px;
+    margin-left: 10px;
+}
+
+.planning .card-body {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+}
+
+.planning .card-item {
+    width: 100%;
+    margin: 0 10px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.planning .form-label {
+    margin-bottom: 5px;
+    font-size: 1.2em;
+}
+
+.planning .form-label sup {
+    color: $secondary;
+    font-weight: bolder;
+}
+
+.planning .btn-save-trip {
+    position: relative;
+    top: 24px;
+}
+
 
 .travel-itenerary {
     margin-top: 20px;
     display: flex;
     flex-flow: row wrap;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: stretch;
 }
 
 .travel-item {
-    width: 40vw;
-    margin-right: .9em;
-    margin-bottom: 15px;
+    margin-top: 10px;
+    width: 49%;
+    height: 100vh;
+    max-height: 300px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.8);
+    padding: 15px;
+    background-color: #FBFEC9;
+    position: relative;
 }
 
-.travel-item img {
-    max-width: 200px;
-    margin-right: 10px;
+.travel-item:nth-child(even) {
+    transform: rotate(-4deg);
 }
 
+.travel-item:nth-child(3n) {
+    transform: rotate(5deg);
+}
+
+.travel-item:nth-child(5n) {
+    transform: rotate(4deg);
+}
+
+.travel-item .card-body-item {
+    width: 100vw;
+}
+
+.travel-item .card-img-container {
+    max-width: 15vw;
+    position: relative;
+    overflow: hidden;
+    border: solid 1px rgba(0,0,0,0.9);
+    background-size: cover;
+    background-position: center center;
+}
 .travel-item:last-child {
     margin-right: 0;
 }
 
-.travel-item .card-header {
+.travel-item .card-header  {
+    padding: 5px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: dotted 1px #000;
+}
+
+.travel-item .card-header h2 {
     font-family: 'Fira Sans';
+}
+
+.travel-item .card-body {
+    padding-top: 10px;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    max-height: 225px;
+    height: 100%;
+}
+
+.travel-item p {
+    font-size: 1em;
+}
+.travel-item .info-departure {
+    margin-top: 5px;
+    line-height: 1.2em;
+}
+
+.travel-item .info-forecast {
+    margin-top: 20px;
+    font-size: 1.2em;
+    font-family: 'Shadows Into Light', cursive;
+}
+
+.travel-item .card-info {
+    padding: 0 10px;
+}
+
+.travel-item .info-daysaway {
+    margin-top: 10px;
+}
+
+.pin {
+    background-color: #aaa;
+    display: block;
+    height: 32px;
+    width: 2px;
+    position: absolute;
+    left: 40%;
+    top: -16px;
+    z-index: 1;
+    transform: rotateZ(-382deg);
+  }
+
+.pin:before {
+    background-color: hsla(0,0%,0%,0.1);
+    box-shadow: 0 0 .25em hsla(0,0%,0%,.1);
+    content: '';
+
+    height: 24px;
+    width: 2px;
+    left: 0;
+    position: absolute;
+    top: 8px;
+
+    transform: rotate(57.5deg);
+    -moz-transform: rotate(57.5deg);
+    -webkit-transform: rotate(57.5deg);
+    -o-transform: rotate(57.5deg);
+    -ms-transform: rotate(57.5deg);
+
+    transform-origin: 50% 100%;
+    -moz-transform-origin: 50% 100%;
+    -webkit-transform-origin: 50% 100%;
+    -ms-transform-origin: 50% 100%;
+    -o-transform-origin: 50% 100%;
+  }
+
+  .pin:after {
+    background-color: #A31;
+    background-image: radial-gradient(25% 25%, circle, hsla(0,0%,100%,.3), hsla(0,0%,0%,.3));
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 1px hsla(0,0%,0%,.1),
+                inset 3px 3px 3px hsla(0,0%,100%,.2),
+                inset -3px -3px 3px hsla(0,0%,0%,.2),
+                23px 20px 3px hsla(0,0%,0%,.15);
+    content: '';
+    height: 12px;
+    left: -5px;
+    position: absolute;
+    top: -10px;
+    width: 12px;
+  }
+
+@media only screen and (max-width: 480px) {
+    .container {
+        max-width: 480px;
+    }
+    .planning {
+        min-height: 60vh;
+    }
+    .planning .card {
+        width: 95vw;
+        min-height: 60vh;
+        padding: 1em 1em 1em 0;
+    }
+    .planning .card-body {
+        flex-flow: column nowrap;
+    }
+    .travel-itenerary {
+        flex-flow: column nowrap;
+        width: 100vw;
+        justify-content: center;
+        align-items: center;
+    }
+    .travel-item {
+        width: 95vw;
+        transform: none!important;
+    }
+    .travel-item .card-img-container {
+        max-width: 40vw;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .container {
+        max-width: 600px;
+    }
+    .planning {
+        min-height: 30vh;
+    }
+    .planning .card  {
+        width: 90vw;
+        min-height: 15vh;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    .container {
+        max-width: 800px;
+    }
+    .planning .form-label {
+        font-size: 0.9em;
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    .container {
+        max-width: 70vw;
+    }
 }

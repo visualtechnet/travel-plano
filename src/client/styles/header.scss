@@ -1,10 +1,21 @@
+@import './color.scss';
+
 header {
-    padding: 10px;
-    background-color: aquamarine;
+    background-color: $background;
+    display: flex;
+    justify-content: center;
+    flex-flow: column nowrap;
+    width: 100vw;
+}
+
+.logo {
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
 }
 
 .logo-first {
-    font-size: 2.5vw;
+    font-size: 3.0em;
     font-family: 'Fira Sans', sans-serif;
     font-weight: 800;
     color: $logoBrown;
@@ -12,8 +23,16 @@ header {
 }
 
 .logo-second {
-    font-size: 1vw;
+    font-size: 1.5em;
     font-family: 'Fira Sans', sans-serif;
     font-weight: 500;
     font-style: italic;
+    display: flex;
+    align-items: flex-end;
+}
+
+nav {
+    background-color: #fff;
+    width: 100%;
+    padding: 10px 20px;
 }

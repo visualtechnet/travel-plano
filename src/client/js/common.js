@@ -43,6 +43,16 @@ const extractDestination = (destination) => {
   return postalcode && { postalcode };
 };
 
+const element = (tag, classList = [], attributes, listener) => {
+  const el = document.createElement(tag);
+
+  classList.forEach((customClass) => {
+    el.classList.add(customClass);
+  });
+
+  return el;
+};
+
 export {
-  initValidation, initDatePicker, isValidDate, extractDestination,
+  initValidation, initDatePicker, isValidDate, extractDestination, element,
 };
