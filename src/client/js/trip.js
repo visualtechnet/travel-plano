@@ -52,7 +52,7 @@ const removeTrip = (name) => {
 const getTrips = () => getData(MYTRIPS) || [];
 
 const loadTrips = () => {
-  const placeholderDefault = 'https://source.unsplash.com/300x250/?nature,travel,winter';
+  const placeholderDefault = 'http://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg';
   const allTrips = getTrips();
 
   controls.travelList.innerHTML = '';
@@ -73,7 +73,6 @@ const loadTrips = () => {
     const nowMoment = moment();
     const momentStartDate = moment(startDate);
     const diffInDays = momentStartDate.diff(nowMoment, 'days');
-    console.log(nowMoment, momentStartDate, diffInDays);
 
     const travelContainer = element('div', ['card', 'travel-item']);
     const travelHeader = element('div', ['card-header']);

@@ -2,12 +2,59 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Travel Plano</title>
+  <!-- CSS only -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@300;400;700&family=Shadows+Into+Light&display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap" rel="stylesheet" />
 </head>
 
-<body> Sample Here <script type="text/javascript" src="main.js"></script></body>
+<body>
+  <header>
+    <div class="logo"><span class="logo-first">Travel</span><span class="logo-second">Plano</span></div>
+  </header>
+  <main>
+    <section class="planning">
+      <div class="card">
+        <div class="card-header bg-primary">
+          <h2 class="text-white">Plan your trip</h2>
+        </div>
+        <form name="tripPlan" class="card-body flex d-row-nowrap justify-content-space-evenly">
+          <div class="flex d-column card-item">
+            <label for="tripName" class="form-label">Trip Name <sup>*</sup></label>
+            <input name="tripName" type="text" required class="form-control" maxlength="100"
+              placeholder="Give your trip a name" />
+          </div>
+          <div class="flex d-column card-item">
+            <label for="location" class="form-label">Destination <sup>*</sup></label>
+            <!-- <select name="location" type="text" class="form-control" placeholder="City, State or PostalCode"></select> -->
+            <input name="location" type="text" required pattern="\d+" aria-label="Enter 5 digit Postal Code" size="5"
+              maxlength="5" class="form-control" placeholder="Enter Postal Code" />
+          </div>
+          <div class="flex d-column card-item">
+            <label for="travelFromDate" class="form-label">From Date <sup>*</sup></label>
+            <input name="travelFromDate" type="date" required class="form-control" date-format="mm/dd/yyyy" value="" />
+          </div>
+          <div class="flex d-column card-item">
+            <label for="travelToDate" class="form-label">To Date <sup>*</sup></label>
+            <input name="travelToDate" type="date" required class="form-control" date-format="mm/dd/yyyy" value="" />
+          </div>
+          <div class="flex d-column card-item full-centered">
+            <button name="btn" class="btn btn-primary btn-save-trip" type="submit">Save Trip</button>
+          </div>
+        </form>
+      </div>
+    </section>
+    <section class="container">
+      <section name="travelList" class="travel-itenerary"></section>
+    </section>
+  </main>
+  <footer>&copy;2021 Travel Plano. A Udacity Project by Mark Guerrero</footer>
+<script type="text/javascript" src="main.js"></script></body>
 
-</html>l
+</html>

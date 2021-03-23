@@ -16,12 +16,15 @@ module.exports = {
         loader: 'babel-loader',
       },
       {
-        test: /\.jpg$/,
+        test: /\.(jpe?g|png|gif|svg)$/i,
         loader: 'file-loader',
+        options: {
+          name: '/media/[name].[ext]',
+        },
       },
       {
         test: /\.scss$/,
-        use: ['style-loader', 'css-loader', 'sass-loader'],
+        use: ['style-loader', 'css-loader?url=false', 'sass-loader'],
       },
       {
         test: /\.css$/i,
