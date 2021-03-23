@@ -151,12 +151,16 @@ main {
 
 .travel-item .info-forecast {
     margin-top: 20px;
-    font-size: 1.2em;
+    font-size: 1em;
     font-family: 'Shadows Into Light', cursive;
 }
 
 .travel-item .card-info {
     padding: 0 10px;
+}
+
+.travel-item .card-info  h4 {
+    font-size: 1.4em;
 }
 
 .travel-item .info-daysaway {
