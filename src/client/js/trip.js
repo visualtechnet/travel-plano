@@ -167,15 +167,13 @@ const saveTravelDestination = async (name, placename, startDate, endDate) => {
 
     await getDailyForecast(destination.lat, destination.lng).then(async (dailyForecast) => {
       forecast = dailyForecast;
-      const { city_name } = forecast;
-      const searchLocation = (city_name && `${city_name.trim().replace('-', ' ')}`) || '';
-      if (searchLocation.length === 0) {
+      if (destination.city && destination.city.length === 0) {
         // eslint-disable-next-line no-alert
         alert('Destination not found');
         return false;
       }
 
-      await getPhotoDestination(searchLocation).then((pix) => {
+      await getPhotoDestination(destination.placeName).then((pix) => {
         const { hits } = pix;
         const pixList = hits && hits.slice(0, 3);
 
