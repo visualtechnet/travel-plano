@@ -13,10 +13,16 @@ const { searchByPostalCode } = require('./geolocation');
 const app = express();
 const router = express.Router();
 
-app.use(helmet());
+app.use(helmet({ contentSecurityPolicy: false }));
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+app.use((req, res, next) => {
+  res.setHeader('Content-Security-Policy', 'script-src \'self\' https://travel-plano-server.herokuapp.com');
+
+  return next();
+});
 
 app.use(express.static('dist'));
 
