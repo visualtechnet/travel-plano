@@ -16,12 +16,12 @@ module.exports = {
         loader: 'babel-loader',
       },
       {
-        test: /\.scss$/,
-        use: ['style-loader', 'css-loader', 'sass-loader'],
+        test: /\.(jpe?g|png|gif|svg)$/i,
+        loader: 'file-loader',
       },
       {
-        test: /\.css$/i,
-        use: [MiniCssExtractPlugin.loader, 'css-loader'],
+        test: /\.scss$/,
+        use: ['style-loader', 'css-loader?url=false', 'sass-loader'],
       },
     ],
   },
