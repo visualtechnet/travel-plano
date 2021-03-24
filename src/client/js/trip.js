@@ -52,7 +52,7 @@ const removeTrip = (name) => {
 const getTrips = () => getData(MYTRIPS) || [];
 
 const loadTrips = () => {
-  const placeholderDefault = 'http://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg';
+  const placeholderDefault = 'media/no-image.jpg';
   const allTrips = getTrips();
 
   controls.travelList.innerHTML = '';
@@ -168,7 +168,13 @@ const saveTravelDestination = async (name, postalcode, startDate, endDate) => {
     await getDailyForecast(destination.lat, destination.lng).then(async (dailyForecast) => {
       forecast = dailyForecast;
       const { city_name } = forecast;
-      const searchLocation = `${city_name.trim().replace('-', ' ')}`;
+      const searchLocation = (city_name && `${city_name.trim().replace('-', ' ')}`) || '';
+      if (searchLocation.length === 0) {
+        // eslint-disable-next-line no-alert
+        alert('Destination not found');
+        return false;
+      }
+
       await getPhotoDestination(searchLocation).then((pix) => {
         const { hits } = pix;
         const pixList = hits && hits.slice(0, 3);

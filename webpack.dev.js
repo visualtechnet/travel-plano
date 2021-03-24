@@ -2,12 +2,14 @@ const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   entry: ['babel-polyfill', './src/client/index.js'],
   mode: 'development',
   devtool: 'source-map',
   stats: 'verbose',
+  // context: path.join(__dirname, 'src'),
   module: {
     rules: [
       {
@@ -18,9 +20,9 @@ module.exports = {
       {
         test: /\.(jpe?g|png|gif|svg)$/i,
         loader: 'file-loader',
-        options: {
-          name: '/media/[name].[ext]',
-        },
+        // options: {
+        //   name: '/media/[name].[ext]',
+        // },
       },
       {
         test: /\.scss$/,
@@ -42,6 +44,14 @@ module.exports = {
       verbose: true,
       cleanStaleWebpackAssets: true,
       protectWebpackAssets: false,
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: './src/client/media/',
+          to: 'media/',
+        },
+      ],
     }),
   ],
 };

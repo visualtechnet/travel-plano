@@ -17,7 +17,7 @@ main {
 .planning {
     //background: url('../media/background-home.jpg') no-repeat center center fixed;
     //background: url('https://source.unsplash.com/weekly?travel') no-repeat center center fixed;
-    background: url('http://source.unsplash.com/weekly?travel') no-repeat center center fixed;
+    background: url('media/background-home.jpg') no-repeat center center fixed;
     background-size: cover;
     overflow: hidden;
     min-height: 50vh;
@@ -255,7 +255,7 @@ main {
         max-width: 600px;
     }
     .planning {
-        min-height: 30vh;
+        min-height: 40vh;
     }
     .planning .card  {
         width: 90vw;
