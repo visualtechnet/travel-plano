@@ -173,7 +173,7 @@ const saveTravelDestination = async (name, placename, startDate, endDate) => {
         return false;
       }
 
-      await getPhotoDestination(destination.placeName).then((pix) => {
+      await getPhotoDestination(destination.city).then((pix) => {
         const { hits } = pix;
         const pixList = hits && hits.slice(0, 3);
 
