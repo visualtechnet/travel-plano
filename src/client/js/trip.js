@@ -151,7 +151,7 @@ const getPhotoDestination = async (query) => {
 const saveTravelDestination = async (name, placename, startDate, endDate) => {
   let forecast = null;
 
-  await getGeoLocation(placename).then(async (geo) => {
+  const result = await getGeoLocation(placename).then(async (geo) => {
     const {
       lat, lng, postalCode, placeName, adminCode1, countryCode,
     } = geo && geo.postalCodes.length > 0 && geo.postalCodes[0];
@@ -165,7 +165,7 @@ const saveTravelDestination = async (name, placename, startDate, endDate) => {
       countryCode,
     };
 
-    await getDailyForecast(destination.lat, destination.lng).then(async (dailyForecast) => {
+    return await getDailyForecast(destination.lat, destination.lng).then(async (dailyForecast) => {
       forecast = dailyForecast;
       if (destination.city && destination.city.length === 0) {
         // eslint-disable-next-line no-alert
@@ -173,7 +173,7 @@ const saveTravelDestination = async (name, placename, startDate, endDate) => {
         return false;
       }
 
-      await getPhotoDestination(destination.city).then((pix) => {
+      return await getPhotoDestination(destination.city).then((pix) => {
         const { hits } = pix;
         const pixList = hits && hits.slice(0, 3);
 
@@ -182,6 +182,8 @@ const saveTravelDestination = async (name, placename, startDate, endDate) => {
       });
     });
   });
+
+  return result;
 };
 
 const initTrip = () => {

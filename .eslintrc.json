@@ -17,6 +17,7 @@
 		"semi": ["error", "always"],
 		"quotes": ["error", "single"],
 		"no-console": "off",
-		"max-len": "off"
+		"max-len": "off",
+		"no-return-await": "off"
 	}
 }

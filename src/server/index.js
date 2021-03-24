@@ -1,3 +1,4 @@
+require('babel-polyfill');
 require('dotenv').config();
 
 const express = require('express');
@@ -11,7 +12,7 @@ const { getPicByQuery } = require('./pixlocation');
 const { searchByPostalCode, searchByLocation } = require('./geolocation');
 
 const app = express();
-const router = express.Router();
+// const router = express.Router();
 
 app.use(helmet({ contentSecurityPolicy: false }));
 app.use(cors());
@@ -26,7 +27,7 @@ app.use((req, res, next) => {
 
 app.use(express.static('dist'));
 
-router.get('/weather/postal/:lat/:lng', async (req, res) => {
+app.get('/weather/postal/:lat/:lng', async (req, res) => {
   const { lat, lng } = req.params;
 
   const forecast = await dailyForecastByLatLng(lat, lng).catch((err) => res.status(500).send(`Unable to fulfill request: ${err.message}`));
@@ -34,7 +35,7 @@ router.get('/weather/postal/:lat/:lng', async (req, res) => {
   res.status(200).send(forecast);
 });
 
-router.get('/pixlocation/:query', async (req, res) => {
+app.get('/pixlocation/:query', async (req, res) => {
   const { query } = req.params;
 
   const pictures = await getPicByQuery(query).catch((err) => res.status(500).send(`Unable to get pictures: ${err.message}`));
@@ -42,7 +43,7 @@ router.get('/pixlocation/:query', async (req, res) => {
   res.status(200).send(pictures);
 });
 
-router.get('/geolocation', async (req, res) => {
+app.get('/geolocation', async (req, res) => {
   const { postalcode } = req.query;
 
   const geoLoc = await searchByPostalCode(postalcode).catch((err) => res.status(500).send(`Unable to get pictures: ${err.message}`));
@@ -50,7 +51,7 @@ router.get('/geolocation', async (req, res) => {
   res.status(200).send(geoLoc);
 });
 
-router.get('/geolocation/location', async (req, res) => {
+app.get('/geolocation/location', async (req, res) => {
   const { placename } = req.query;
 
   const geoLoc = await searchByLocation(placename).catch((err) => res.status(500).send(`Unable to get pictures: ${err.message}`));
@@ -58,10 +59,10 @@ router.get('/geolocation/location', async (req, res) => {
   res.status(200).send(geoLoc);
 });
 
-app.use(router);
-
-app.listen(port, () => {
+const server = app.listen(port, () => {
   console.log('Welcome to Travel Plano');
   console.log('A Travel Application to pull multiple types of data from different sources. A Udacity project presented by Mark Guerrero');
   console.log(`Application is running on port ${port}`);
 });
+
+module.exports = server;

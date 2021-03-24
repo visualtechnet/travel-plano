@@ -55,6 +55,13 @@
     </section>
   </main>
   <footer>&copy;2021 Travel Plano. A Udacity Project by Mark Guerrero</footer>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js');
+      });
+    }
+  </script>
 <script type="text/javascript" src="main.js"></script></body>
 
 </html>

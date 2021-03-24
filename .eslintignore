@@ -1,1 +1,4 @@
 *.scss
+*.min.js
+**/media/**
+*.html
