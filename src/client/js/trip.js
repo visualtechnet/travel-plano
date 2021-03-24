@@ -127,8 +127,8 @@ const loadTrips = () => {
   });
 };
 
-const getGeoLocation = async (postalcode) => {
-  const url = `${TRAVEL_SERVER_URL}/geolocation?postalcode=${postalcode}`;
+const getGeoLocation = async (placename) => {
+  const url = `${TRAVEL_SERVER_URL}/geolocation/location?placename=${placename}`;
   const result = await fetch(url).then((res) => res.json());
 
   return result;
@@ -148,10 +148,10 @@ const getPhotoDestination = async (query) => {
   return result;
 };
 
-const saveTravelDestination = async (name, postalcode, startDate, endDate) => {
+const saveTravelDestination = async (name, placename, startDate, endDate) => {
   let forecast = null;
 
-  await getGeoLocation(postalcode).then(async (geo) => {
+  await getGeoLocation(placename).then(async (geo) => {
     const {
       lat, lng, postalCode, placeName, adminCode1, countryCode,
     } = geo && geo.postalCodes.length > 0 && geo.postalCodes[0];
@@ -191,11 +191,11 @@ const initTrip = () => {
     event.preventDefault();
     event.stopPropagation();
     const name = controls.name.value;
-    const postalcode = controls.destination.value;
+    const placename = controls.destination.value;
     const startDate = controls.travelFromDate.value;
     const endDate = controls.travelToDate.value;
 
-    await saveTravelDestination(name, postalcode, startDate, endDate);
+    await saveTravelDestination(name, placename, startDate, endDate);
 
     return false;
   });

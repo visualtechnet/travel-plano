@@ -8,7 +8,7 @@ const helmet = require('helmet');
 const port = process.env.PORT || 8090;
 const { dailyForecastByLatLng } = require('./weather');
 const { getPicByQuery } = require('./pixlocation');
-const { searchByPostalCode } = require('./geolocation');
+const { searchByPostalCode, searchByLocation } = require('./geolocation');
 
 const app = express();
 const router = express.Router();
@@ -46,6 +46,14 @@ router.get('/geolocation', async (req, res) => {
   const { postalcode } = req.query;
 
   const geoLoc = await searchByPostalCode(postalcode).catch((err) => res.status(500).send(`Unable to get pictures: ${err.message}`));
+
+  res.status(200).send(geoLoc);
+});
+
+router.get('/geolocation/location', async (req, res) => {
+  const { placename } = req.query;
+
+  const geoLoc = await searchByLocation(placename).catch((err) => res.status(500).send(`Unable to get pictures: ${err.message}`));
 
   res.status(200).send(geoLoc);
 });
